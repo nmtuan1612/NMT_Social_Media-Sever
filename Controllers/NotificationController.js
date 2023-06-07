@@ -1,4 +1,5 @@
 import NotiModel from "../Models/notificationModel.js";
+import UserModel from "../Models/userModel.js";
 
 export const createNotification = async (req, res) => {
   const newNotification = new NotiModel(req.body);
@@ -27,8 +28,19 @@ export const getNotifications = async (req, res) => {
   const userId = req.params.id;
 
   try {
-    const notifications = await NotiModel.find({ userReceiveId: userId }).sort({ createdAt: -1 });
-    res.status(200).json(notifications);
+    const notifications = await NotiModel.find({ userReceiveId: userId }).sort({
+      createdAt: -1,
+    });
+
+    const allNotifications = [];
+    for (const notification of notifications) {
+      const attackUser = await UserModel.findById(
+        notification.userCreateId,
+        "profilePicture"
+      );
+      allNotifications.push({ ...notification._doc, attackUser });
+    }
+    res.status(200).json(allNotifications);
   } catch (error) {
     console.log(error);
   }
