@@ -12,7 +12,7 @@ import UploadRoute from "./Routes/UploadRoute.js";
 import CommentRoute from "./Routes/CommentRoute.js";
 import NotificationRoute from "./Routes/NotificationRoute.js";
 import ConversationRoute from "./Routes/ConversationRoute.js";
-import { connectToDB } from "./config/database.js";
+// import { connectToDB } from "./config/database.js";
 import MessageModel from "./Models/messageModel.js";
 
 // Routes

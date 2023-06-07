@@ -1,7 +1,5 @@
 import express from "express";
 import multer from "multer";
-// import { uploadFiles } from "../Controllers/UploadController.js";
-import MediaModel from "../Models/mediaModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import streamifier from "streamifier";
 
@@ -13,16 +11,16 @@ cloudinary.config({
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/images");
-  },
-  filename: (req, file, cb) => {
-    cb(null, req.body.name);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "public/images");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, req.body.name);
+//   },
+// });
 
-const upload = multer({ storage: storage }).single("file");
+// const upload = multer({ storage: storage }).single("file");
 
 const fileUpload = multer();
 
